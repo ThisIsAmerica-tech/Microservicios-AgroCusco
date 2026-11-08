@@ -515,15 +515,19 @@ La pipeline de integración continua se ejecuta en cada push y Pull Request. Tie
 
 ## 11. Participación del equipo
 
-La consigna pide que cada integrante tenga al menos tres commits y que nadie concentre más del 50 % del trabajo. Este es el resumen del historial del repositorio:
+La consigna pide que cada integrante tenga al menos tres commits y que nadie concentre más del 50 % del trabajo. En la sección Insights → Contributors de GitHub se ve el aporte de cada cuenta, sin contar las fusiones de Pull Requests:
 
-| Integrante (cuenta en GitHub) | Commits | Trabajo |
-|---|---|---|
-| Andrea Alejandra Hermoza Guevara | 3 | pedidos-service: endpoints, 10 pruebas y Dockerfile |
-| Francys Raúl Tejada Taco (pachiskt) | 3 | usuarios-service: endpoints, 8 pruebas y Dockerfile |
-| Beder Edison Achiri Sillo (Edison y Beder Edison) | 8 | productos-service: estructura base, conexión a MySQL y limpieza del repositorio; además creó el repositorio, hizo el commit inicial y fusionó los Pull Requests |
-| Wilder Ronald Ccasani Quispe (Wilder CCasani) | 3 | notificaciones-service: endpoints, pruebas y Dockerfile |
-| Albert Levita Zea | 2 | README.md con el informe del proyecto y pruebas |
+![Colaboradores del repositorio en GitHub](docs/img/contribuidores.png)
+
+Con eso, el resumen por integrante es el siguiente:
+
+| Integrante | Cuenta de GitHub | Commits | Trabajo |
+|---|---|---|---|
+| Andrea Alejandra Hermoza Guevara | 72373062-lang | 3 | pedidos-service: endpoints, 10 pruebas y Dockerfile |
+| Francys Raúl Tejada Taco | pachiskt | 3 | usuarios-service: endpoints, 8 pruebas y Dockerfile |
+| Beder Edison Achiri Sillo | jotaa7776 y ThisIsAmerica-tech | 5 | productos-service: estructura base, conexión a MySQL y limpieza del repositorio; además creó el repositorio, hizo el commit inicial y fusionó los Pull Requests |
+| Wilder Ronald Ccasani Quispe | WilderCCasani | 3 | notificaciones-service: endpoints, pruebas y Dockerfile |
+| Albert Levita Zea | AlbertLevita | 1 | README.md con el informe del proyecto y pruebas |
 
 ## 12. Conclusiones
 
