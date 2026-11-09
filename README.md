@@ -342,7 +342,7 @@ def obtener_notificaciones(usuario: str):
 
 ## 8. Pruebas
 
-En usuarios-service y pedidos-service las pruebas se hacen con el ejecutor de pruebas que trae Node (`node --test`) y el módulo `node:assert`, sin instalar nada más. Cada prueba levanta el servidor en un puerto libre y reinicia los datos antes de correr, así que no dependen unas de otras. En notificaciones-service se usa pytest con el TestClient de FastAPI. Las pruebas de Node se ejecutan con `npm test` y las de Python con `pytest`.
+En usuarios-service y pedidos-service las pruebas se hacen con el ejecutor de pruebas que trae Node (`node --test`) y el módulo `node:assert`, sin instalar nada más. Cada prueba levanta el servidor en un puerto libre y reinicia los datos antes de correr, así que no dependen unas de otras. En notificaciones-service se usa pytest con el TestClient de FastAPI, y en productos-service Jest con Supertest. Las pruebas de Node se ejecutan con `npm test` y las de Python con `pytest`.
 
 ### 8.1 Pruebas de usuarios-service
 
@@ -456,6 +456,23 @@ def test_enviar_notificacion_ok():
     assert response.json()["estado"] == "ENVIADO"
 ```
 
+### 8.4 Pruebas de productos-service
+
+Aquí se usa Jest junto con Supertest. Para que las pruebas no dependan de una base de datos real, la conexión a MySQL se simula con `jest.mock` sobre `mysql2/promise`; así corren rápido y sin errores de red. Las dos librerías se instalaron con `npm install --save-dev jest supertest`, y el script `test` del `package.json` quedó en `jest`.
+
+![Instalación de Jest y Supertest en productos-service](docs/img/productos-instalacion-jest.png)
+
+![Archivo tests/productos.test.js](docs/img/pruebas-productos-codigo.png)
+
+| N.º | Prueba | Comportamiento que se espera |
+|---|---|---|
+| 1 | test_listar_productos | GET /productos responde 200 con una lista, y el primer producto es «Papa Nativa». |
+| 2 | test_health_check | GET /health responde 200 con status igual a OK. |
+
+Al ejecutar `npm test` pasan las 2 pruebas. En la misma captura se ve el commit con el que se subieron:
+
+![Ejecución de npm test en productos-service y commit de las pruebas](docs/img/pruebas-productos-jest.png)
+
 ## 9. Docker
 
 Cada microservicio tiene su propio Dockerfile. En los de Node se copian primero los archivos `package*.json` y se instalan las dependencias, para que Docker reutilice esa capa mientras no cambien; en usuarios y pedidos se instala con `--omit=dev` para no meter dependencias de desarrollo. También hay un `.dockerignore` que deja fuera `node_modules` y el archivo `.env`. A continuación se ve el commit con el Dockerfile de usuarios.
@@ -525,7 +542,7 @@ Con eso, el resumen por integrante es el siguiente:
 |---|---|---|---|
 | Andrea Alejandra Hermoza Guevara | 72373062-lang | 3 | pedidos-service: endpoints, 10 pruebas y Dockerfile |
 | Francys Raúl Tejada Taco | pachiskt | 3 | usuarios-service: endpoints, 8 pruebas y Dockerfile |
-| Beder Edison Achiri Sillo | jotaa7776 y ThisIsAmerica-tech | 5 | productos-service: estructura base, conexión a MySQL y limpieza del repositorio; además creó el repositorio, hizo el commit inicial y fusionó los Pull Requests |
+| Beder Edison Achiri Sillo | jotaa7776 y ThisIsAmerica-tech | 6 | productos-service: estructura base, conexión a MySQL, pruebas con Jest y limpieza del repositorio; además creó el repositorio, hizo el commit inicial y fusionó los Pull Requests |
 | Wilder Ronald Ccasani Quispe | WilderCCasani | 3 | notificaciones-service: endpoints, pruebas y Dockerfile |
 | Albert Levita Zea | AlbertLevita | 1 | README.md con el informe del proyecto y pruebas |
 
