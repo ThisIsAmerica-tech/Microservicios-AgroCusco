@@ -64,6 +64,9 @@ app.get('/health', (req, res) => {
     res.status(200).json({ status: "OK", service: "productos-service" });
 });
 
-app.listen(PORT, () => {
-    console.log(`Servidor de productos corriendo en el puerto ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log(`Servidor de productos corriendo en el puerto ${PORT}`);
+    });
+}
+module.exports = app;
